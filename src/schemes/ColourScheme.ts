@@ -12,7 +12,7 @@ const colourSchemeSchema = new Schema(
     background: { type: String, required: true },
     card_background: { type: String, required: true },
   },
-  { collection: "main.colour_schemes" }
+  { collection: "colour_schemes" }
 );
 
 const ColourScheme = mongoose.model("ColourScheme", colourSchemeSchema);
