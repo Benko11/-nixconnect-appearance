@@ -13,6 +13,10 @@ const url = process.env.MONGODB_URI
   ? process.env.MONGODB_URI
   : "mongodb://localhost:27017/-nixconnect-appearance";
 
+app.get("/", async (req, res) => {
+  res.json({ message: "93pigeons" });
+});
+
 app.get("/colour-schemes", async (req, res) => {
   try {
     const colourSchemes = await ColourScheme.find();
