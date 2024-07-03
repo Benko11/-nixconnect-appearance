@@ -63,8 +63,11 @@ app.delete("/colour-schemes/:id", async (req, res) => {
     await ColourScheme.findByIdAndDelete(req.params.id);
     res.status(204).send();
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Something went wrong");
+    if (process.env.DEV === "true") {
+      res.status(500).json(err);
+    } else {
+      res.status(500).send("Something went wrong");
+    }
   }
 });
 
