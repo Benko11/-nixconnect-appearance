@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { config } from "dotenv";
 import colourSchemeRouter from "./api/colour-scheme";
 import fontRouter from "./api/font";
+import preferenceRouter from "./api/preference";
 
 config();
 const app = express();
@@ -11,6 +12,7 @@ const port = process.env.PORT != null ? +process.env.PORT : 3000;
 app.use(express.json());
 app.use("/colour-schemes", colourSchemeRouter);
 app.use("/fonts", fontRouter);
+app.use("/preferences", preferenceRouter);
 app.use(express.static("public"));
 
 const url = process.env.MONGODB_URI
