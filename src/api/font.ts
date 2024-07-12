@@ -32,6 +32,26 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const filteredFont = await Font.findById(req.params.id);
+
+    if (filteredFont == null) {
+      res.status(404).json({ message: "Resource not found" });
+      return;
+    }
+
+    res.json({ ...filteredFont, url: `/assets/fonts/${filteredFont.url}` });
+  } catch (err: any) {
+    if (err.name === "CastError") {
+      res.status(404).json({ message: "Resource not found" });
+      return;
+    }
+
+    res.status(500).json({ message: "Something went wrong" });
+  }
+});
+
 router.delete("/:id", async (req, res) => {
   try {
     await Font.findByIdAndDelete(req.params.id);

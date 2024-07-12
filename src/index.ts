@@ -11,6 +11,7 @@ const port = process.env.PORT != null ? +process.env.PORT : 3000;
 app.use(express.json());
 app.use("/colour-schemes", colourSchemeRouter);
 app.use("/fonts", fontRouter);
+app.use(express.static("public"));
 
 const url = process.env.MONGODB_URI
   ? process.env.MONGODB_URI
